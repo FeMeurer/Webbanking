@@ -33,3 +33,35 @@ header a:hover {
     font-weight: bolder;
     background-color: white;
 }
+
+#headline {
+    padding-top: 100px;
+    padding-left: 20px;
+    font-size: 40px;
+    color: grey;    
+}
+
+#flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    gap: 5px;
+    margin-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#flex-container > a {
+    text-decoration:none;
+}
+
+.transaction-select-container {
+    color: grey;
+    border: 1px solid grey;
+    min-height: 50px;
+}
+
+.transaction-select-container:hover {
+    outline: 7px solid red; 
+}
