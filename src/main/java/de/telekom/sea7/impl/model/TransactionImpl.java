@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 
+import de.telekom.sea7.inter.model.Transaction;
+
 @Service
 public class TransactionImpl implements Transaction {
 	

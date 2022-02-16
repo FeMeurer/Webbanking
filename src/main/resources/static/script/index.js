@@ -6,10 +6,10 @@ function readData(data) {
 }
 
 function readJson(json) {
-    //json.transactions.forEach(element => {
-        //var transaction = element.receiver + " " + element.iban + " " + element.bic + " " + element.institute + " " + element.purpose + " " + element.amount;
+    json.transactions.forEach(element => {
+        var transaction = element.receiver + " " + element.iban + " " + element.bic + " " + element.purpose + " " + element.amount;
         
-        var transaction = json.receiver + " " + json.iban + " " + json.bic + " " + json.purpose + " " + json.amount;
+        //var transaction = json.receiver + " " + json.iban + " " + json.bic + " " + json.purpose + " " + json.amount;
         var transactionElement = document.createElement("a");
        	var divElement = document.createElement("div");
         divElement.className = "transaction-select-container"
@@ -19,7 +19,7 @@ function readJson(json) {
         divElement.appendChild(textElement);
         transactionElement.appendChild(divElement);
         flexbox.appendChild(transactionElement);
-    //});
+    });
     
 }
 
