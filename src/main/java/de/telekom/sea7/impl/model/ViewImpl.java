@@ -6,13 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import de.telekom.sea7.inter.model.Transaction;
+
 @Controller
 public class ViewImpl {
 	
 	@Autowired
 	Transaction transaction;
 	
-	@GetMapping("/index1.html")
+	@GetMapping("/index.html")
 	@ResponseBody
 	public String getHtml() {
 		
@@ -44,11 +46,15 @@ public class ViewImpl {
 	@ResponseBody
 	public String getJson() {
 		String json = "{"
+					+ "\"transactions\" : ["
+					+ "{"
 					+ "\"receiver\" : \"" + transaction.getReceiver() + "\","
 					+ "\"iban\" : \"" + transaction.getIban() + "\","
 					+ "\"bic\" : \"" + transaction.getBic() + "\","
 					+ "\"purpose\" : \"" + transaction.getPurpose() + "\","
 					+ "\"amount\" : " + transaction.getAmount()
+					+ "}"
+					+ "]"
 					+ "}";
 		return json;
 	}
