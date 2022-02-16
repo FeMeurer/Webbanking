@@ -2,11 +2,13 @@ package de.telekom.sea7.impl.model;
 
 import java.time.LocalDateTime;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.RequestScope;
 
 import de.telekom.sea7.inter.model.Transaction;
 
-@Service
+@Component
 public class TransactionImpl implements Transaction {
 	
 	private float amount;
@@ -16,23 +18,7 @@ public class TransactionImpl implements Transaction {
 	private String purpose;
 	private LocalDateTime date;
 	
-	public TransactionImpl() {
-		this.amount = 50.00f;
-		this.receiver = "Rüdiger";
-		this.iban = "DE9191";
-		this.bic = "BANK01";
-		this.purpose = "Geld";
-		this.date = LocalDateTime.now();
-	}
-	
-	public TransactionImpl(float amount, String receiver, String iban, String bic, String purpose, LocalDateTime date) {
-		this.amount = amount;
-		this.receiver = receiver;
-		this.iban = iban;
-		this.bic = bic;
-		this.purpose = purpose;
-		this.date = date;
-	}
+	public TransactionImpl() {}
 
 	@Override
 	public float getAmount() {
