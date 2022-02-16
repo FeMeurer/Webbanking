@@ -1,12 +1,16 @@
 package de.telekom.sea7.impl.model;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ViewImpl {
+	
+	@Autowired
+	Transaction transaction;
 	
 	@GetMapping("/index1.html")
 	@ResponseBody
@@ -18,7 +22,7 @@ public class ViewImpl {
 			+		"<head>"
 			+			"<meta charset=\"UTF-8\">"
 			+			"<title>Webbanking</title>"
-			+			"<link href=\"/style/default1.css\" rel=\"stylesheet\">"
+			+			"<link href=\"/style/default.css\" rel=\"stylesheet\">"
 			+			"<script src=\"/script/index.js\" type=\"module\"></script>"
 			+		"</head>"
 			+		"<body>"
@@ -36,10 +40,16 @@ public class ViewImpl {
 			+	"</html>";
 	}
 	
-	@GetMapping("/style/default1.css")
+	@GetMapping("/data/transactions.json")
 	@ResponseBody
-	public String getCSS() {
-		
-		return "header {background-color: red; overflow: hidden; width: 100%; position: fixed; box-shadow: 2px 0px 5px 5px rgba(0, 0, 0, 0.5); z-index: 1;}";
+	public String getJson() {
+		String json = "{"
+					+ "\"receiver\" : \"" + transaction.getReceiver() + "\","
+					+ "\"iban\" : \"" + transaction.getIban() + "\","
+					+ "\"bic\" : \"" + transaction.getBic() + "\","
+					+ "\"purpose\" : \"" + transaction.getPurpose() + "\","
+					+ "\"amount\" : " + transaction.getAmount()
+					+ "}";
+		return json;
 	}
 }

@@ -6,11 +6,12 @@ function readData(data) {
 }
 
 function readJson(json) {
-    json.transactions.forEach(element => {
-        var transaction = element.receiver + " " + element.iban + " " + element.bic + " " + element.institute + " " + element.purpose + " " + element.amount;
+    //json.transactions.forEach(element => {
+        //var transaction = element.receiver + " " + element.iban + " " + element.bic + " " + element.institute + " " + element.purpose + " " + element.amount;
         
+        var transaction = json.receiver + " " + json.iban + " " + json.bic + " " + json.purpose + " " + json.amount;
         var transactionElement = document.createElement("a");
-        var divElement = document.createElement("div");
+       	var divElement = document.createElement("div");
         divElement.className = "transaction-select-container"
         var textElement = document.createTextNode(transaction) 
         
@@ -18,10 +19,10 @@ function readJson(json) {
         divElement.appendChild(textElement);
         transactionElement.appendChild(divElement);
         flexbox.appendChild(transactionElement);
-    });
+    //});
     
 }
 
-fetch('/json/transactions.json')
+fetch('/data/transactions.json')
     .then(readData)
     .then(readJson)
