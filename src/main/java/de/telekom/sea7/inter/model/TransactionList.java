@@ -16,5 +16,9 @@ public interface TransactionList extends Iterable<Transaction> {
 	int indexOf(Transaction transaction);
 	
 	void add(Transaction transaction);
+	
+	void clear();
+	
+	Transaction get(int index);
 
 }

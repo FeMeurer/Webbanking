@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 
 public interface Transaction {
 
+	int getId();
+	
+	void setId(int id);
+	
 	float getAmount();
 
 	String getReceiver();
