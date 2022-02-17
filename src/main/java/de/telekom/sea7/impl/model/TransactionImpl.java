@@ -2,15 +2,11 @@ package de.telekom.sea7.impl.model;
 
 import java.time.LocalDateTime;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.RequestScope;
-
 import de.telekom.sea7.inter.model.Transaction;
 
-@Component
 public class TransactionImpl implements Transaction {
 	
+	private int id;
 	private float amount;
 	private String receiver; 
 	private String iban;
@@ -20,6 +16,16 @@ public class TransactionImpl implements Transaction {
 	
 	public TransactionImpl() {}
 
+	@Override
+	public int getId() {
+		return id;
+	}
+	
+	@Override 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	@Override
 	public float getAmount() {
 		return amount;
