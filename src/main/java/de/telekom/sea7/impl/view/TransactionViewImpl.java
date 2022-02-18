@@ -1,4 +1,4 @@
-package de.telekom.sea7.impl.model;
+package de.telekom.sea7.impl.view;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,33 +15,9 @@ public class TransactionViewImpl {
 	@Autowired
 	TransactionList transactionList;
 	
-	@GetMapping("/transaction.html")
-	@ResponseBody
-	public String getTransactionHtml(@RequestParam int transaction) {
-		
-		return 
-				"<!DOCTYPE html>"
-			+	"<html>"
-			+		"<head>"
-			+			"<meta charset=\"UTF-8\">"
-			+			"<title>Webbanking</title>"
-			+			"<link href=\"/style/default.css\" rel=\"stylesheet\">"
-			+			"<link href=\"/style/transaction.css\" rel=\"stylesheet\">"
-			+			"<script src=\"/script/transaction.js\" type=\"module\"></script>"
-			+		"</head>"
-			+		"<body>"
-			+			"<header>"
-			+				"<a href=\"index.html\">Webbanking</a>"
-			+			"</header>"
-			+			"<main>"
-			+				"<div id=\"headline\">"
-			+					"Zahlung: " + transaction
-			+				"</div>"
-			+				"<div id=\"transaction\">"
-			+				"</div>"
-			+			"</main>"
-			+		"</body>"
-			+	"</html>";
+	@GetMapping("/transaction")
+	public String getTransactionHtml(/*@RequestParam int transaction*/) {
+		return "transaction";
 	}
 	
 	@GetMapping("data/{id}/oneTransaction.json")
