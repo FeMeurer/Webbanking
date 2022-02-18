@@ -30,7 +30,7 @@ function readJson(json) {
         transactionDiv.appendChild(textElementPurpose);
         var br4 = document.createElement("br");
 		transactionDiv.appendChild(br4);
-        var textElementAmount = document.createTextNode("Betrag: " + json.amount)
+        var textElementAmount = document.createTextNode("Betrag: " + parseFloat(json.amount).toFixed(2));
         transactionDiv.appendChild(textElementAmount); 
         var br5 = document.createElement("br");
 		transactionDiv.appendChild(br5);
