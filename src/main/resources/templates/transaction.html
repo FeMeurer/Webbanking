@@ -14,7 +14,7 @@
 				Empfänger: <span th:text="${transaction.receiver}"></span></br>
 				IBAN: <span th:text="${transaction.iban}"></span></br>
 				BIC: <span th:text="${transaction.bic}"></span></br>
-				Betrag:  <span th:text="${#numbers.formatDecimal(transaction.amount, 1, 'COMMA', 2, 'POINT')}"></span> €</br>
+				Betrag:  <span th:text="${#numbers.formatDecimal(transaction.amount, 1, 'POINT', 2, 'COMMA')}"></span> €</br>
 				Verwendungszweck: <span th:text="${transaction.purpose}"></span></br>
 			</div>
 		</main>
