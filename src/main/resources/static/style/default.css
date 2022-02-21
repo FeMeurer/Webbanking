@@ -4,6 +4,10 @@ html, body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+a {
+	text-decoration: none;	
+}
+
 header {
     background-color: red;
     overflow: hidden;
@@ -19,7 +23,6 @@ header a {
     text-align: center;
     font-size: 17px;
     padding: 14px 16px;
-    text-decoration: none;
     font-weight: bolder;
 }
 
@@ -41,27 +44,3 @@ header a:hover {
     color: grey;    
 }
 
-#flex-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-content: flex-start;
-    gap: 5px;
-    margin-top: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-#flex-container > a {
-    text-decoration:none;
-}
-
-.transaction-select-container {
-    color: grey;
-    border: 1px solid grey;
-    min-height: 50px;
-}
-
-.transaction-select-container:hover {
-    outline: 7px solid red; 
-}

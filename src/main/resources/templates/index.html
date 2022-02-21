@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Webbanking</title>
-		<link href="/style/default.css" rel="stylesheet">
-		<!-- <script src="/script/index.js" type="module"></script> -->
-	</head>
-	<body>
-		<header>
-			<a href="#" th:href="@{/}">Webbanking</a>
-		</header>
-		<main>
-			<div id="headline">Zahlungen</div>
-			<div id="flex-container">
-				<a th:each="transaction: ${transactions}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Webbanking</title>
+	<link href="/style/default.css" rel="stylesheet">
+	<link href="/style/index.css" rel="stylesheet">
+</head>
+
+<body>
+	<header th:replace="header :: header"></header>
+	<main>
+		<div id="headline">Zahlungen</div>
+		<div id="flex-container">
+			<div th:each="transaction: ${transactions}">
+				<a th:href="@{/transaction(transaction=${transaction.id})}">
 					<div class="transaction-select-container">
-						<span th:utext="${transaction.receiver}"></span>
-						<span th:utext="${transaction.iban}"></span>
-						<span th:utext="${transaction.bic}"></span>
-						<span th:utext="${transaction.purpose}"></span>
-						<span th:utext="${transaction.amount}"></span>
+						<div id="tsc-top">
+							<div>
+								<span th:utext="${#temporals.format(transaction.date, 'dd.MM.yyyy HH:mm')}"></span>
+							</div>
+						</div>
+						<div id="tsc-mid">
+							<div>
+								<span th:utext="${transaction.receiver}"></span>
+							</div>
+							<div>
+								<span th:text="${#numbers.formatDecimal(transaction.amount, 1, 'COMMA', 2, 'POINT')}"></span>€
+							</div>
+						</div>
+						<div id="tsc-bottom">
+							<div>
+								<span th:utext="${transaction.purpose}"></span>
+							</div>
+						</div>
+
 					</div>
 				</a>
 			</div>
-		</main>
-	</body>
+		</div>
+	</main>
+</body>
+
 </html>
