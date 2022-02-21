@@ -12,9 +12,7 @@ public class TransactionImpl implements Transaction {
 	private String iban;
 	private String bic;	
 	private String purpose;
-	private LocalDateTime date;
-	
-	public TransactionImpl() {}
+	private LocalDateTime date = LocalDateTime.now();
 
 	@Override
 	public int getId() {

@@ -6,6 +6,7 @@
 	<title>Webbanking</title>
 	<link href="/style/default.css" rel="stylesheet">
 	<link href="/style/index.css" rel="stylesheet">
+	<script src="/script/index.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -18,23 +19,22 @@
 					<div class="transaction-select-container">
 						<div id="tsc-top">
 							<div>
-								<span th:utext="${#temporals.format(transaction.date, 'dd.MM.yyyy HH:mm')}"></span>
+								<span th:text="${#temporals.format(transaction.date, 'dd.MM.yyyy HH:mm')}"></span>
 							</div>
 						</div>
 						<div id="tsc-mid">
 							<div>
-								<span th:utext="${transaction.receiver}"></span>
+								<span th:text="${transaction.receiver}"></span>
 							</div>
 							<div>
-								<span th:text="${#numbers.formatDecimal(transaction.amount, 1, 'COMMA', 2, 'POINT')}"></span>€
+								<span class="amount" th:text="${#numbers.formatDecimal(transaction.amount, 1, 'POINT', 2, 'COMMA')}"></span>€
 							</div>
 						</div>
 						<div id="tsc-bottom">
 							<div>
-								<span th:utext="${transaction.purpose}"></span>
+								<span th:text="${transaction.purpose}"></span>
 							</div>
 						</div>
-
 					</div>
 				</a>
 			</div>
