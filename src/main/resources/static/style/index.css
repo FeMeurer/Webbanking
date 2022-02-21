@@ -1,0 +1,47 @@
+#flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    gap: 5px;
+    margin-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.transaction-select-container {
+    color: grey;
+    border: 1px solid grey;
+    padding: 5px 5px 5px 5px;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.transaction-select-container:hover {
+    outline: 3px solid red; 
+}
+
+#tsc-top > div{
+	font-size: 17px;
+	font-weight: lighter;
+}
+
+#tsc-mid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+
+#tsc-mid > div{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#tsc-bottom > div {
+	font-size: 17px;
+	font-weight: lighter; 
+}
