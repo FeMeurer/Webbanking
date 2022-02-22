@@ -1,4 +1,4 @@
-package de.telekom.sea7.impl.model;
+package de.telekom.sea7.impl.services;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
 
+import de.telekom.sea7.impl.model.TransactionImpl;
 import de.telekom.sea7.inter.model.Transaction;
 import de.telekom.sea7.inter.model.TransactionList;
 
