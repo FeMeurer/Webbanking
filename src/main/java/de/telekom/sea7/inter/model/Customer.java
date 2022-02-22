@@ -2,7 +2,7 @@ package de.telekom.sea7.inter.model;
 
 public interface Customer {
 
-	String getId();
+	int getId();
 
 	String getUsername();
 
@@ -12,7 +12,7 @@ public interface Customer {
 
 	TransactionList getTransactionList();
 
-	void setId(String id);
+	void setId(int id);
 
 	void setUsername(String username);
 

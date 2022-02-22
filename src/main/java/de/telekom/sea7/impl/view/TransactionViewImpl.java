@@ -19,22 +19,22 @@ public class TransactionViewImpl {
 	@Autowired
 	TransactionList transactionList;
 	
-	@GetMapping("/transaction")
-	public String getTransactionHtml(@RequestParam int transaction, Model model) {
-		model.addAttribute("transaction", transactionList.get(transaction - 1));
-		return "transaction";
-	}
-	
-	@GetMapping("/newTransaction")
-	public String getNewTransaction(Model model) {
-		model.addAttribute("transaction", new TransactionImpl());
-		return "newTransaction";
-	}
-	
-	@PostMapping("/newTransaction")
-	public String newTransaction(@ModelAttribute("transaction") TransactionImpl transaction) {
-		transactionList.add(transaction);
-		return "redirect:/";
-	}
+//	@GetMapping("/transaction")
+//	public String getTransactionHtml(@RequestParam int transaction, Model model) {
+//		model.addAttribute("transaction", transactionList.get(transaction - 1));
+//		return "transaction";
+//	}
+//	
+//	@GetMapping("/newTransaction")
+//	public String getNewTransaction(Model model) {
+//		model.addAttribute("transaction", new TransactionImpl());
+//		return "newTransaction";
+//	}
+//	
+//	@PostMapping("/newTransaction")
+//	public String newTransaction(@ModelAttribute("transaction") TransactionImpl transaction) {
+//		transactionList.add(transaction);
+//		return "redirect:/";
+//	}
 	
 }

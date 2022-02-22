@@ -1,4 +1,4 @@
-#flex-container {
+#flexbox-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -18,30 +18,31 @@
     flex-direction: column;
     justify-content: flex-start;
     align-content: flex-start;
+    cursor: pointer;
 }
 
 .transaction-select-container:hover {
     outline: 3px solid red; 
 }
 
-#tsc-top > div{
+.tsc-top > div{
 	font-size: 17px;
 	font-weight: lighter;
 }
 
-#tsc-mid {
+.tsc-mid {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-content: flex-start;
 }
 
-#tsc-mid > div{
+.tsc-mid > div{
     font-size: 24px;
     font-weight: bold;
 }
 
-#tsc-bottom > div {
+.tsc-bottom {
 	font-size: 17px;
 	font-weight: lighter; 
 }

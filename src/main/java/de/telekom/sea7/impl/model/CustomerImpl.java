@@ -1,21 +1,27 @@
-package de.telekom.sea7.impl.view;
+package de.telekom.sea7.impl.model;
 
 import org.springframework.stereotype.Service;
 
 import de.telekom.sea7.inter.model.Customer;
 import de.telekom.sea7.inter.model.TransactionList;
 
-@Service
 public class CustomerImpl implements Customer {
 	
-	private String id;
+	private int id;
 	private String username;
 	private String name;
 	private String surname;
 	private TransactionList transactionList;
 	
+	public CustomerImpl(int id, String username, String name, String surname) {
+		this.id = id;
+		this.username = username;
+		this.name = name;
+		this.surname = surname;
+	}
+	
 	@Override
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	
@@ -40,7 +46,7 @@ public class CustomerImpl implements Customer {
 	}
 	
 	@Override
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
