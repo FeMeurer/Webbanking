@@ -18,12 +18,7 @@ public class TransactionImpl implements Transaction {
 	public int getId() {
 		return id;
 	}
-	
-	@Override 
-	public void setId(int id) {
-		this.id = id;
-	}
-	
+
 	@Override
 	public float getAmount() {
 		return amount;
@@ -53,7 +48,12 @@ public class TransactionImpl implements Transaction {
 	public LocalDateTime getDate() {
 		return date;
 	}
-
+	
+	@Override 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	@Override
 	public void setAmount(float amount) {
 		this.amount = amount;

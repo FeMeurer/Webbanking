@@ -21,4 +21,5 @@ public interface TransactionList extends Iterable<Transaction> {
 	
 	Transaction get(int index);
 
+	void remove(int index);
 }

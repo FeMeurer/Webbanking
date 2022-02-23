@@ -6,7 +6,7 @@ function showTransactionList() {
     headlineDiv.innerHTML = "Zahlungen"
 	
 	var flexbox = document.createElement("div");
-	flexbox.id = "flexbox-container"
+	flexbox.id = "flex-container"
 	contentDiv.appendChild(flexbox);
     
     fetch('/transaction')
@@ -20,13 +20,14 @@ function readTransactionListData(data) {
 }
 
 function readTransactionListJson(json) {
+    var counter = 0;
     json.forEach(element => {
         var transaction = element.receiver + " " + element.iban + " " + element.bic + " "  + element.purpose + " " + element.amount;
 
         //Create TSC element
         var divElement = document.createElement("div");
         divElement.className = "transaction-select-container"
-        divElement.id = element.id;
+        divElement.id = counter;
 
         //Create element for showing date in TSC element
         var date = createDateString(element.date);
@@ -61,8 +62,9 @@ function readTransactionListJson(json) {
         subElement.appendChild(textElement);
         divElement.appendChild(subElement); 
         
-        divElement.onclick = showTransaction;
-        document.getElementById("flexbox-container").appendChild(divElement);
+        divElement.addEventListener("click", function(){showTransaction(this.id)});
+        document.getElementById("flex-container").appendChild(divElement);
+        counter++;
     });  
 }
 

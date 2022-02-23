@@ -1,6 +1,6 @@
 function cleanDiv(element) {
     while (element.firstChild) {
-		element.removeChild(element.firstChild)
+		element.removeChild(element.firstChild);
 	}
 }
 
@@ -10,5 +10,6 @@ function createDateString(dateString) {
 }
 
 
-document.getElementById("gotoIndex").addEventListener('click', showTransactionList)
+document.getElementById("gotoIndex").addEventListener('click', showTransactionList);
+document.getElementById("gotoNewTransaction").addEventListener('click', addTransaction);
 showTransactionList();
