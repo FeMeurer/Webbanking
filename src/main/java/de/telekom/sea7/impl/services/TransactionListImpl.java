@@ -60,6 +60,10 @@ public class TransactionListImpl implements Iterable<Transaction>, TransactionLi
 		this.transactionList.clear();
 	}
 	
+	public void remove(int index) {
+		this.transactionList.remove(index);
+	}
+	
 	@PostConstruct
 	public void init() {
 		transactionList = new ArrayList<Transaction>();
