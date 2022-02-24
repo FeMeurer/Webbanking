@@ -5,10 +5,14 @@ function showTransactionList() {
     var headlineDiv = document.getElementById("headline");
     headlineDiv.innerHTML = "Zahlungen"
 	
+	var balanceDiv = document.createElement("div");
+	balanceDiv.id = "balance-container";
+	contentDiv.appendChild(balanceDiv);
+	
 	var flexbox = document.createElement("div");
-	flexbox.id = "flex-container"
+	flexbox.id = "flex-container";
 	contentDiv.appendChild(flexbox);
-    
+
     fetch('/transaction')
         .then(readTransactionListData)
         .then(readTransactionListJson)
@@ -21,9 +25,12 @@ function readTransactionListData(data) {
 
 function readTransactionListJson(json) {
     var counter = 0;
+    var balance = 0.00;
     json.forEach(element => {
         var transaction = element.receiver + " " + element.iban + " " + element.bic + " "  + element.purpose + " " + element.amount;
-
+	
+		balance += element.amount;
+		
         //Create TSC element
         var divElement = document.createElement("div");
         divElement.className = "transaction-select-container"
@@ -49,8 +56,7 @@ function readTransactionListJson(json) {
 
         //// Create element for showing amount
         var amountElement = document.createElement("div");
-        var textElement = document.createTextNode(parseFloat(element.amount).toFixed(2) + "€")
-        amountElement.appendChild(textElement);
+        amountElement.innerHTML = '<span class="transaction-num">' + parseFloat(element.amount).toFixed(2) + '€</span>';
         subElement.appendChild(amountElement);
 
         divElement.appendChild(subElement);
@@ -66,5 +72,21 @@ function readTransactionListJson(json) {
         document.getElementById("flex-container").appendChild(divElement);
         counter++;
     });  
+    
+	var divBalance = document.getElementById("balance-container");
+	divBalance.innerHTML = 'Gesamt: <span class="transaction-num">' + parseFloat(balance).toFixed(2) + '€</span>';
+	colorNumbers();
 }
 
+
+function colorNumbers() {
+	var numbers = document.getElementsByClassName("transaction-num")
+	Array.prototype.forEach.call(numbers, function(element) {
+		if (element.innerHTML.replace("€","") < 0) {
+			element.classList.add('redFont');
+		} 
+		else {
+			element.classList.add('greenFont');
+		}
+	});
+}
