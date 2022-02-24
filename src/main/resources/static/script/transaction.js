@@ -20,48 +20,98 @@ function readTransactionData(data) {
 
 function readTransactionJson(json) {
     var transactionDiv = document.createElement("div");
-    transactionDiv.id = "transaction";
-    
-	var date = createDateString(json.date);
-    var textElement = document.createTextNode("Datum: " + date); 
-    transactionDiv.appendChild(textElement);
-    transactionDiv.appendChild(document.createElement("br"));
-    
-    var textElement = document.createTextNode("Empfänger: " + json.receiver); 
-    transactionDiv.appendChild(textElement);
-    transactionDiv.appendChild(document.createElement("br"));
-    
-    var textElement = document.createTextNode("IBAN: " + json.iban); 
-    transactionDiv.appendChild(textElement);
-    transactionDiv.appendChild(document.createElement("br"));
-
-    var textElement = document.createTextNode("BIC: " + json.bic); 
-    transactionDiv.appendChild(textElement);
-    transactionDiv.appendChild(document.createElement("br"));
-
-    var textElement = document.createTextNode("Betrag: " + parseFloat(json.amount).toFixed(2) + "€"); 
-    transactionDiv.appendChild(textElement);
-    transactionDiv.appendChild(document.createElement("br"));
-
-    var textElement = document.createTextNode("Verwendungszweck: " + json.purpose); 
-    transactionDiv.appendChild(textElement);
-    transactionDiv.appendChild(document.createElement("br"));
-    
+    transactionDiv.id = "flex-container";
     document.getElementById("content").appendChild(transactionDiv);
     
+    var divElement = document.createElement("div");
+    divElement.className = "transaction-property"
+    var labelElement = document.createElement("div");
+    labelElement.innerHTML = "Datum:"
+    var dataElement = document.createElement("div");
+    var date = createDateString(json.date);
+    dataElement.innerHTML = date;
+	divElement.appendChild(labelElement);
+	divElement.appendChild(dataElement);
+	transactionDiv.appendChild(divElement);
+	
+    var divElement = document.createElement("div");
+    divElement.className = "transaction-property"
+    var labelElement = document.createElement("div");
+    labelElement.innerHTML = "Empfänger:"
+    var dataElement = document.createElement("div");
+    dataElement.innerHTML = json.receiver;
+	divElement.appendChild(labelElement);
+	divElement.appendChild(dataElement);
+    transactionDiv.appendChild(divElement);
+    
+    var divElement = document.createElement("div");
+    divElement.className = "transaction-property"
+    var labelElement = document.createElement("div");
+    labelElement.innerHTML = "IBAN:"
+    var dataElement = document.createElement("div");
+    dataElement.innerHTML = json.iban;
+	divElement.appendChild(labelElement);
+	divElement.appendChild(dataElement);
+	transactionDiv.appendChild(divElement);
+
+    var divElement = document.createElement("div");
+    divElement.className = "transaction-property"
+    var labelElement = document.createElement("div");
+    labelElement.innerHTML = "BIC:"
+    var dataElement = document.createElement("div");
+    var date = createDateString(json.date);
+    dataElement.innerHTML = json.bic;
+	divElement.appendChild(labelElement);
+	divElement.appendChild(dataElement);
+	transactionDiv.appendChild(divElement);
+	
+    var divElement = document.createElement("div");
+    divElement.className = "transaction-property"
+    var labelElement = document.createElement("div");
+    labelElement.innerHTML = "Betrag:"
+    var dataElement = document.createElement("div");
+    dataElement.innerHTML = parseFloat(json.amount).toFixed(2) + "€";
+	divElement.appendChild(labelElement);
+	divElement.appendChild(dataElement);
+	transactionDiv.appendChild(divElement);
+
+    var divElement = document.createElement("div");
+    divElement.className = "transaction-property"
+    var labelElement = document.createElement("div");
+    labelElement.innerHTML = "Verwendungszweck:"
+    var dataElement = document.createElement("div");
+    dataElement.innerHTML = json.purpose;
+	divElement.appendChild(labelElement);
+	divElement.appendChild(dataElement);
+	transactionDiv.appendChild(divElement);
+	
+	var divButtons = document.createElement("div");
+	divButtons.id = "button-container"
+	document.getElementById("content").appendChild(divButtons);
+	
+    var button = document.createElement("Button");
+    button.type = "button";
+    button.innerHTML = "Zurück";
+    button.id = "btn_back";
+    button.addEventListener("click", showTransactionList);
+    
+    divButtons.appendChild(button);
+	
     var button = document.createElement("Button");
     button.type = "button";
     button.innerHTML = "Löschen";
+    button.className = "btn_functions";
     button.addEventListener("click", function(){removeTransaction(transactionIndex)});
     
-    document.getElementById("content").appendChild(button);
+    divButtons.appendChild(button);
     
     var button = document.createElement("Button");
     button.type = "button";
     button.innerHTML = "Ändern";
+    button.className = "btn_functions";
     button.addEventListener("click", function(){editTransaction(json, transactionIndex)});
     
-    document.getElementById("content").appendChild(button);
+    divButtons.appendChild(button);
 }
 
 function removeTransaction(index) {

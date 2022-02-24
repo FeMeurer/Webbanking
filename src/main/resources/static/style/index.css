@@ -4,9 +4,28 @@
     justify-content: flex-start;
     align-content: flex-start;
     gap: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 10px;
+}
+
+#balance-container {
+	color: grey;
+	font-size: 24px;
+    font-weight: bold;
+    padding: 5px 5px 5px 5px;
+    text-align: right;
     margin-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.redFont {
+	color: red;
+}
+
+.greenFont {
+	color: green;
 }
 
 .transaction-select-container {

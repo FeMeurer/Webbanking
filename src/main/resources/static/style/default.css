@@ -2,6 +2,17 @@ html, body {
     margin: 0; 
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    min-width: 550px;
+}
+
+#headline {
+	max-width: 1400px;
+	margin: auto;
+}
+
+#content {
+	max-width: 1400px;
+	margin: auto;	
 }
 
 a {
@@ -17,7 +28,13 @@ header {
     z-index: 1;
 }
 
-header div {
+#header-container {
+	min-width: 550px;
+	max-width: 1400px;
+	margin: auto;	
+}
+
+#header-container div {
     float: left;
     color: white;
     text-align: center;
@@ -26,7 +43,7 @@ header div {
     font-weight: bolder;
 }
 
-header div:hover {
+#header-container div:hover {
     float: left;
     color: red;
     text-align: center;

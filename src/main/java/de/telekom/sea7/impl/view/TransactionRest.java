@@ -33,8 +33,9 @@ public class TransactionRest {
 	}
 	
 	@PostMapping("/transaction")
-	public void addTransaction(@RequestBody TransactionImpl transaction) {
+	public Transaction addTransaction(@RequestBody TransactionImpl transaction) {
 		transactionList.add(transaction);
+		return null;
 	}
 	
 	@PutMapping("/transaction/{id}")
