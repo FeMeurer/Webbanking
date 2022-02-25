@@ -132,11 +132,25 @@ function addTransaction() {
 	
 	createForm();
 	
-	var button = document.createElement("Button");
+	var divButtons = document.createElement("div");
+	divButtons.id = "button-container"
+	document.getElementById("content").appendChild(divButtons);
+	
+    var button = document.createElement("Button");
     button.type = "button";
-    button.innerHTML = "Hinzufügen";
+    button.innerHTML = "Zurück";
+    button.id = "btn_back";
+    button.addEventListener("click", showTransactionList);
+    
+    divButtons.appendChild(button);
+	
+    var button = document.createElement("Button");
+    button.type = "button";
+    button.innerHTML = "Erstellen";
+    button.className = "btn_functions";
     button.addEventListener("click", executeAddTransaction);
-    document.getElementById("content").appendChild(button);
+    
+    divButtons.appendChild(button);
 }
     
 function executeAddTransaction() {  
@@ -170,14 +184,28 @@ function editTransaction(json, index) {
 	document.getElementById("receiver").value = json.receiver;
 	document.getElementById("iban").value = json.iban;
 	document.getElementById("bic").value = json.bic;
-	document.getElementById("amount").value = json.amount;
+	document.getElementById("amount").value = parseFloat(json.amount).toFixed(2);
 	document.getElementById("purpose").value = json.purpose;
 	
-	var button = document.createElement("Button");
+	var divButtons = document.createElement("div");
+	divButtons.id = "button-container"
+	document.getElementById("content").appendChild(divButtons);
+	
+    var button = document.createElement("Button");
     button.type = "button";
-    button.innerHTML = "Änderung speichern";
+    button.innerHTML = "Zurück";
+    button.id = "btn_back";
+    button.addEventListener("click", showTransactionList);
+    
+    divButtons.appendChild(button);
+	
+    var button = document.createElement("Button");
+    button.type = "button";
+    button.innerHTML = "Ändern";
+    button.className = "btn_functions";
     button.addEventListener("click", function(){executeEditTransaction(index)});
-    document.getElementById("content").appendChild(button);
+    
+    divButtons.appendChild(button);
 }
 
 function executeEditTransaction(index) {  
@@ -206,93 +234,110 @@ function fetchSuccess(Text) {
     var contentDiv = document.getElementById("content");
     cleanDiv(contentDiv);
     
-    var textElement = document.createTextNode(Text);
-	contentDiv.appendChild(textElement);
+    var divNotification = document.createElement("div");
+	divNotification.className = "notification";
+	divNotification.innerHTML = Text
+	document.getElementById("content").appendChild(divNotification);
 	
-	var button = document.createElement("Button");
+	var divButtons = document.createElement("div");
+	divButtons.className = "notification-buttons"
+	document.getElementById("content").appendChild(divButtons);
+	
+    var button = document.createElement("Button");
     button.type = "button";
     button.innerHTML = "Zurück";
+    button.id = "btn_back";
     button.addEventListener("click", showTransactionList);
-    
-    document.getElementById("content").appendChild(button);
+    divButtons.appendChild(button);
 }
 
 function createForm() {
-	var divForm = document.createElement("div");
-	divForm.class = "form-transaction";
-	
-	var divFormParam = document.createElement("div");
-	divFormParam.class = "form-transaction-parameter";
-	var labelFormParam = document.createElement("label");
-	labelFormParam.innerHTML = "ID: ";
+    var transactionDiv = document.createElement("div");
+    transactionDiv.id = "flex-container";
+    document.getElementById("content").appendChild(transactionDiv);
+    
+    var divElement = document.createElement("div");
+    divElement.className = "transaction-property"
+    var labelElement = document.createElement("div");
+    labelElement.innerHTML = "ID: "
+    var dataElement = document.createElement("div");
 	var inputFormParam = document.createElement("input");
 	inputFormParam.type = "number";
-	inputFormParam.class = "form-field";
+	inputFormParam.className = "form-field";
 	inputFormParam.id = "id";
-	divFormParam.appendChild(labelFormParam);
-	divFormParam.appendChild(inputFormParam);
-	divForm.appendChild(divFormParam);
+	dataElement.appendChild(inputFormParam);
+	divElement.appendChild(labelElement);
+	divElement.appendChild(dataElement);
+	transactionDiv.appendChild(divElement);
 	
-	var divFormParam = document.createElement("div");
-	divFormParam.class = "form-transaction-parameter";
-	var labelFormParam = document.createElement("label");
-	labelFormParam.innerHTML = "Empfänger: ";
+	var divElement = document.createElement("div");
+    divElement.className = "transaction-property"
+    var labelElement = document.createElement("div");
+    labelElement.innerHTML = "Empfänger: "
+    var dataElement = document.createElement("div");
 	var inputFormParam = document.createElement("input");
 	inputFormParam.type = "text";
-	inputFormParam.class = "form-field";
+	inputFormParam.className = "form-field";
 	inputFormParam.id = "receiver";
-	divFormParam.appendChild(labelFormParam);
-	divFormParam.appendChild(inputFormParam);
-	divForm.appendChild(divFormParam);
+	dataElement.appendChild(inputFormParam);
+	divElement.appendChild(labelElement);
+	divElement.appendChild(dataElement);
+	transactionDiv.appendChild(divElement);
 	
-	var divFormParam = document.createElement("div");
-	divFormParam.class = "form-transaction-parameter";
-	var labelFormParam = document.createElement("label");
-	labelFormParam.innerHTML = "IBAN: ";
+	var divElement = document.createElement("div");
+    divElement.className = "transaction-property"
+    var labelElement = document.createElement("div");
+    labelElement.innerHTML = "IBAN: "
+    var dataElement = document.createElement("div");
 	var inputFormParam = document.createElement("input");
 	inputFormParam.type = "text";
-	inputFormParam.class = "form-field";
+	inputFormParam.className = "form-field";
 	inputFormParam.id = "iban";
-	divFormParam.appendChild(labelFormParam);
-	divFormParam.appendChild(inputFormParam);
-	divForm.appendChild(divFormParam);
+	dataElement.appendChild(inputFormParam);
+	divElement.appendChild(labelElement);
+	divElement.appendChild(dataElement);
+	transactionDiv.appendChild(divElement);
 	
-	var divFormParam = document.createElement("div");
-	divFormParam.class = "form-transaction-parameter";
-	var labelFormParam = document.createElement("label");
-	labelFormParam.innerHTML = "BIC: ";
+	var divElement = document.createElement("div");
+    divElement.className = "transaction-property"
+    var labelElement = document.createElement("div");
+    labelElement.innerHTML = "BIC: "
+    var dataElement = document.createElement("div");
 	var inputFormParam = document.createElement("input");
 	inputFormParam.type = "text";
-	inputFormParam.class = "form-field";
+	inputFormParam.className = "form-field";
 	inputFormParam.id = "bic";
-	divFormParam.appendChild(labelFormParam);
-	divFormParam.appendChild(inputFormParam);
-	divForm.appendChild(divFormParam);
+	dataElement.appendChild(inputFormParam);
+	divElement.appendChild(labelElement);
+	divElement.appendChild(dataElement);
+	transactionDiv.appendChild(divElement);
 	
-	var divFormParam = document.createElement("div");
-	divFormParam.class = "form-transaction-parameter";
-	var labelFormParam = document.createElement("label");
-	labelFormParam.innerHTML = "Betrag: ";
+	var divElement = document.createElement("div");
+    divElement.className = "transaction-property"
+    var labelElement = document.createElement("div");
+    labelElement.innerHTML = "Betrag: "
+    var dataElement = document.createElement("div");
 	var inputFormParam = document.createElement("input");
 	inputFormParam.type = "number";
 	inputFormParam.step = "0.01"
-	inputFormParam.class = "form-field";
+	inputFormParam.className = "form-field";
 	inputFormParam.id = "amount"
-	divFormParam.appendChild(labelFormParam);
-	divFormParam.appendChild(inputFormParam);
-	divForm.appendChild(divFormParam);
+	dataElement.appendChild(inputFormParam);
+	divElement.appendChild(labelElement);
+	divElement.appendChild(dataElement);
+	transactionDiv.appendChild(divElement);
 	
-	var divFormParam = document.createElement("div");
-	divFormParam.class = "form-transaction-parameter";
-	var labelFormParam = document.createElement("label");
-	labelFormParam.innerHTML = "Verwendungszweck: ";
+	var divElement = document.createElement("div");
+    divElement.className = "transaction-property"
+    var labelElement = document.createElement("div");
+    labelElement.innerHTML = "Verwendungszweck: "
+    var dataElement = document.createElement("div");
 	var inputFormParam = document.createElement("input");
 	inputFormParam.type = "text";
-	inputFormParam.class = "form-field";
+	inputFormParam.className = "form-field";
 	inputFormParam.id = "purpose"
-	divFormParam.appendChild(labelFormParam);
-	divFormParam.appendChild(inputFormParam);
-	divForm.appendChild(divFormParam);
-    
-    document.getElementById("content").appendChild(divForm);
+	dataElement.appendChild(inputFormParam);
+	divElement.appendChild(labelElement);
+	divElement.appendChild(dataElement);
+	transactionDiv.appendChild(divElement);
 }

@@ -18,8 +18,6 @@ public class TransactionListImpl implements Iterable<Transaction>, TransactionLi
 
 	private List<Transaction> transactionList;
 	
-	public TransactionListImpl() {}
-	
 	@Override
 	public Iterator<Transaction> iterator() {
 		return transactionList.iterator();

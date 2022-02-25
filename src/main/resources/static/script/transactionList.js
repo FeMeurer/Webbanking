@@ -73,6 +73,13 @@ function readTransactionListJson(json) {
         counter++;
     });  
     
+    if (counter == 0) {
+		noTransDiv = document.createElement("div");
+		noTransDiv.className = "notification"
+		noTransDiv.innerHTML = "Es sind keine Zahlungsvorgänge vorhanden"
+		document.getElementById("flex-container").appendChild(noTransDiv);
+	}	
+    
 	var divBalance = document.getElementById("balance-container");
 	divBalance.innerHTML = 'Gesamt: <span class="transaction-num">' + parseFloat(balance).toFixed(2) + '€</span>';
 	colorNumbers();

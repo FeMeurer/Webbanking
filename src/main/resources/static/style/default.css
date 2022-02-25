@@ -2,17 +2,21 @@ html, body {
     margin: 0; 
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    min-width: 550px;
-}
-
-#headline {
-	max-width: 1400px;
-	margin: auto;
+    min-width: 750px;
 }
 
 #content {
 	max-width: 1400px;
 	margin: auto;	
+}
+
+#headline {
+    padding-top: 100px;
+    padding-left: 20px;
+    font-size: 40px;
+    color: grey;   
+   	max-width: 1400px;
+	margin: auto; 
 }
 
 a {
@@ -29,7 +33,7 @@ header {
 }
 
 #header-container {
-	min-width: 550px;
+	min-width: 750px;
 	max-width: 1400px;
 	margin: auto;	
 }
@@ -55,10 +59,16 @@ header {
     cursor: pointer;
 }
 
-#headline {
+.notification {
+	color: grey;
+	font-size: 24px;
+    font-weight: bold;	
+    text-align: center;
     padding-top: 100px;
-    padding-left: 20px;
-    font-size: 40px;
-    color: grey;    
+}
+
+.notification-buttons {
+	text-align: center;
+	padding-top: 10px;
 }
 

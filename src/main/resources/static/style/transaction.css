@@ -1,11 +1,17 @@
 .transaction-property {
-	width: 500px;
+	width: 700px;
 	font-size: 24px;
 	color: grey;  
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-content: flex-start;	
+}
+
+.form-field {
+    color: grey;
+    font-size: 17px;
+    width: 350px;
 }
 
 #button-container {
@@ -20,7 +26,7 @@
 }
 
 .btn_functions {
-    width: 100px;
+    width: 120px;
     height: 30px;
     font-size: 17px;
     background-color: red;
@@ -54,4 +60,14 @@
     color: white;
     font-weight: bolder;
     border: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
 }
