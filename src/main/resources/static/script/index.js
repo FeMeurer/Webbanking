@@ -4,9 +4,9 @@ function cleanDiv(element) {
 	}
 }
 
-function createDateString(dateString) {
-  var date = new Date(dateString);
-  return (date.getDay() + "." + date.getMonth() + "." + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes());
+function createDateString(unformatedDate) {
+  var date = new Date(unformatedDate);
+  return date.toLocaleDateString('de-DE', {year: 'numeric', month: '2-digit', day: '2-digit', timezone: 'Germany/Berlin', hour: '2-digit', minute: '2-digit' })
 }
 
 

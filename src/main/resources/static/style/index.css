@@ -42,6 +42,7 @@
 
 .transaction-select-container:hover {
     outline: 3px solid red; 
+    background-color: lightcoral;
 }
 
 .tsc-top > div{

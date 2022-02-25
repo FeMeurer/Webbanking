@@ -13,13 +13,6 @@ public class CustomerImpl implements Customer {
 	private String surname;
 	private TransactionList transactionList;
 	
-	public CustomerImpl(int id, String username, String name, String surname) {
-		this.id = id;
-		this.username = username;
-		this.name = name;
-		this.surname = surname;
-	}
-	
 	@Override
 	public int getId() {
 		return id;
