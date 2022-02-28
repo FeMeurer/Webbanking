@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.telekom.sea7.impl.model.Transaction;
-import de.telekom.sea7.inter.model.TransactionRepository;
+import de.telekom.sea7.impl.repository.Transaction;
+import de.telekom.sea7.inter.repository.TransactionRepository;
 
 @RestController
 public class TransactionRest {

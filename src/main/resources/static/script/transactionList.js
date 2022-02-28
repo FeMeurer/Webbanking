@@ -24,17 +24,14 @@ function readTransactionListData(data) {
 }
 
 function readTransactionListJson(json) {
-    var counter = 0;
     var balance = 0.00;
     json.forEach(element => {
-	
-		console.log(element);
 		balance += element.amount;
 		
         //Create TSC element
         var divElement = document.createElement("div");
         divElement.className = "transaction-select-container"
-        divElement.id = counter;
+        divElement.id = element.id;
 
         //Create element for showing date in TSC element
         var date = createDateString(element.creationDate);
@@ -68,12 +65,11 @@ function readTransactionListJson(json) {
         subElement.appendChild(textElement);
         divElement.appendChild(subElement); 
         
-        divElement.addEventListener("click", function(){showTransaction(this.ID)});
+        divElement.addEventListener("click", function(){showTransaction(this.id)});
         document.getElementById("flex-container").appendChild(divElement);
-        counter++;
     });  
     
-    if (counter == 0) {
+    if (json === '{}') {
 		noTransDiv = document.createElement("div");
 		noTransDiv.className = "notification"
 		noTransDiv.innerHTML = "Es sind keine Zahlungsvorgänge vorhanden"

@@ -1,4 +1,4 @@
-package de.telekom.sea7.impl.model;
+package de.telekom.sea7.impl.repository;
 
 import java.time.LocalDateTime;
 
