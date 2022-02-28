@@ -12,20 +12,19 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.telekom.sea7.impl.model.CustomerImpl;
-import de.telekom.sea7.inter.model.Customer;
-import de.telekom.sea7.inter.model.CustomerList;
-import de.telekom.sea7.inter.model.Transaction;
+import de.telekom.sea7.impl.model.Customer;
+
 
 @RestController
 public class CustomerView {
 	
-	@Autowired
-	CustomerList customerList;
+//	@Autowired
+//	CustomerList customerList;
 
 	@GetMapping("/customer")
 	public List<Customer> getCustomer() {
-		return customerList.getCustomerList();
+//		return customerList.getCustomerList();
+		return null;
 	}
 	
 	@GetMapping("/customer/{id}")
@@ -39,24 +38,24 @@ public class CustomerView {
 	}
 	
 	@PostMapping("/customer")
-	public Customer addCustomer(@RequestBody CustomerImpl customer) {
-		customerList.add(customer);
+	public Customer addCustomer(@RequestBody Customer customer) {
+//		customerList.add(customer);
 		return null;
 	}
 	
 	@PutMapping("/customer/{id}")
-	public Customer updateCustomer(@PathVariable int id, @RequestBody CustomerImpl customer) {
-		Customer oldCustomer = customerList.get(id);
-		oldCustomer.setId(customer.getId());
-		oldCustomer.setName(customer.getName());
-		oldCustomer.setSurname(customer.getSurname());
-		oldCustomer.setUsername(customer.getUsername());
+	public Customer updateCustomer(@PathVariable int id, @RequestBody Customer customer) {
+//		Customer oldCustomer = customerList.get(id);
+//		oldCustomer.setId(customer.getId());
+//		oldCustomer.setName(customer.getName());
+//		oldCustomer.setSurname(customer.getSurname());
+//		oldCustomer.setUsername(customer.getUsername());
 		return null;
 	}
 	
 	@DeleteMapping("/customer/{id}")
 	public Customer deleteCustomer(@PathVariable int id) {
-		customerList.remove(id);
+//		customerList.remove(id);
 		return null;
 	}
 	

@@ -27,8 +27,8 @@ function readTransactionListJson(json) {
     var counter = 0;
     var balance = 0.00;
     json.forEach(element => {
-        var transaction = element.receiver + " " + element.iban + " " + element.bic + " "  + element.purpose + " " + element.amount;
 	
+		console.log(element);
 		balance += element.amount;
 		
         //Create TSC element
@@ -37,7 +37,7 @@ function readTransactionListJson(json) {
         divElement.id = counter;
 
         //Create element for showing date in TSC element
-        var date = createDateString(element.date);
+        var date = createDateString(element.creationDate);
         var subElement = document.createElement("div");
         subElement.className = "tsc-top"
         var textElement = document.createTextNode(date)
@@ -50,7 +50,7 @@ function readTransactionListJson(json) {
 
         //// Create element for showing receiver 
         var receiverElement = document.createElement("div");
-        var textElement = document.createTextNode(element.receiver)
+        var textElement = document.createTextNode(element.receiver_ID)
         receiverElement.appendChild(textElement);
         subElement.appendChild(receiverElement);
 
@@ -68,7 +68,7 @@ function readTransactionListJson(json) {
         subElement.appendChild(textElement);
         divElement.appendChild(subElement); 
         
-        divElement.addEventListener("click", function(){showTransaction(this.id)});
+        divElement.addEventListener("click", function(){showTransaction(this.ID)});
         document.getElementById("flex-container").appendChild(divElement);
         counter++;
     });  
