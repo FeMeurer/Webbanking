@@ -4,32 +4,32 @@ import java.time.LocalDateTime;
 
 public interface Transaction {
 
-	int getId();
-	
-	void setId(int id);
-	
+	int getID();
+
 	float getAmount();
 
-	String getReceiver();
+	int getReceiver_ID();
 
-	String getIban();
+	int getIban_ID();
 
 	String getBic();
 
 	String getPurpose();
 
-	LocalDateTime getDate();
+	LocalDateTime getCreationDate();
+
+	void setID(int iD);
 
 	void setAmount(float amount);
 
-	void setReceiver(String receiver);
+	void setReceiver_ID(int receiver_ID);
 
-	void setIban(String iban);
+	void setIban_ID(int iban_ID);
 
 	void setBic(String bic);
 
-	void setPurpose(String purpose);
+	void setCreationDate(LocalDateTime creationDate);
 
-	void setDate(LocalDateTime date);
+	void setPurpose(String purpose);
 
 }

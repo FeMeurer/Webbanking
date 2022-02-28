@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.telekom.sea7.impl.model.TransactionImpl;
 import de.telekom.sea7.inter.model.Transaction;
 import de.telekom.sea7.inter.model.TransactionList;
 
@@ -33,21 +32,21 @@ public class TransactionRest {
 	}
 	
 	@PostMapping("/transaction")
-	public Transaction addTransaction(@RequestBody TransactionImpl transaction) {
+	public Transaction addTransaction(@RequestBody de.telekom.sea7.inter.model.Transaction transaction) {
 		transactionList.add(transaction);
 		return null;
 	}
 	
 	@PutMapping("/transaction/{id}")
-	public Transaction updateTransaction(@PathVariable int id, @RequestBody TransactionImpl transaction) {
+	public Transaction updateTransaction(@PathVariable int id, @RequestBody de.telekom.sea7.inter.model.Transaction transaction) {
 		Transaction oldTransaction = transactionList.get(id);
-		oldTransaction.setId(transaction.getId());
-		oldTransaction.setReceiver(transaction.getReceiver());
-		oldTransaction.setIban(transaction.getIban());
+		oldTransaction.setID(transaction.getID());
+		oldTransaction.setReceiver_ID(transaction.getReceiver_ID());
+		oldTransaction.setIban_ID(transaction.getIban_ID());
 		oldTransaction.setBic(transaction.getBic());
 		oldTransaction.setAmount(transaction.getAmount());
 		oldTransaction.setPurpose(transaction.getPurpose());
-		oldTransaction.setDate(LocalDateTime.now());
+		oldTransaction.setCreationDate(LocalDateTime.now());
 		return null;
 	}
 	
