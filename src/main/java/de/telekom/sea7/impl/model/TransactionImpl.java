@@ -2,71 +2,81 @@ package de.telekom.sea7.impl.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import de.telekom.sea7.inter.model.Transaction;
 
+@Entity
 public class TransactionImpl implements Transaction {
 	
-	private int id;
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private int ID;
+	
 	private float amount;
-	private String receiver; 
-	private String iban;
+	private int receiver_ID; 
+	private int iban_ID;
 	private String bic;	
 	private String purpose;
-	private LocalDateTime date = LocalDateTime.now();
-
+	private LocalDateTime creationDate;
+	
 	@Override
-	public int getId() {
-		return id;
+	public int getID() {
+		return ID;
 	}
-
+	
 	@Override
 	public float getAmount() {
 		return amount;
 	}
-
+	
 	@Override
-	public String getReceiver() {
-		return receiver;
+	public int getReceiver_ID() {
+		return receiver_ID;
 	}
-
+	
 	@Override
-	public String getIban() {
-		return iban;
+	public int getIban_ID() {
+		return iban_ID;
 	}
 	
 	@Override
 	public String getBic() {
 		return bic;
 	}
-
+	
 	@Override
 	public String getPurpose() {
 		return purpose;
 	}
-
+	
+	
 	@Override
-	public LocalDateTime getDate() {
-		return date;
+	public LocalDateTime getCreationDate() {
+		return creationDate;
 	}
 	
-	@Override 
-	public void setId(int id) {
-		this.id = id;
+	@Override
+	public void setID(int iD) {
+		ID = iD;
 	}
 	
 	@Override
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
-
+	
 	@Override
-	public void setReceiver(String receiver) {
-		this.receiver = receiver;
+	public void setReceiver_ID(int receiver_ID) {
+		this.receiver_ID = receiver_ID;
 	}
-
+	
 	@Override
-	public void setIban(String iban) {
-		this.iban = iban;
+	public void setIban_ID(int iban_ID) {
+		this.iban_ID = iban_ID;
 	}
 	
 	@Override
@@ -75,12 +85,17 @@ public class TransactionImpl implements Transaction {
 	}
 
 	@Override
+	public void setCreationDate(LocalDateTime creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	@Override
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
 	}
 
-	@Override
-	public void setDate(LocalDateTime date) {
-		this.date = date;
-	}
+	
+
+	
+	
 }
