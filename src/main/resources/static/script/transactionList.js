@@ -27,14 +27,14 @@ function readTransactionListJson(json) {
     var balance = 0.00;
     json.forEach(element => {
 		balance += element.amount;
-		
+		console.log(element);
         //Create TSC element
         var divElement = document.createElement("div");
         divElement.className = "transaction-select-container"
         divElement.id = element.id;
 
         //Create element for showing date in TSC element
-        var date = createDateString(element.creationDate);
+        var date = createDateString(element.creationdate);
         var subElement = document.createElement("div");
         subElement.className = "tsc-top"
         var textElement = document.createTextNode(date)

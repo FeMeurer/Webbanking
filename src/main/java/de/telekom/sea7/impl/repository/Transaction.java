@@ -4,9 +4,15 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Transaction {
@@ -16,8 +22,17 @@ public class Transaction {
 	private int ID;
 	
 	private float amount;
-	private int receiver_ID; 
-	private int iban_ID;
+	
+	@ManyToOne
+	@JoinColumn(name="receiver_ID")
+	@JsonBackReference
+	private Receiver receiver; 
+	
+	@ManyToOne
+	@JoinColumn(name="iban_ID")
+	@JsonBackReference
+	private Iban iban;
+	
 	private String purpose;
 	private LocalDateTime creationdate;
 	
@@ -29,45 +44,43 @@ public class Transaction {
 		return amount;
 	}
 	
-	public int getReceiver_ID() {
-		return receiver_ID;
+	public Receiver getReceiver() {
+		return receiver;
 	}
 	
-	public int getIban_ID() {
-		return iban_ID;
+	public Iban getIban() {
+		return iban;
 	}
 	
 	public String getPurpose() {
 		return purpose;
 	}
 	
-	
-	public LocalDateTime getCreationDate() {
+	public LocalDateTime getCreationdate() {
 		return creationdate;
 	}
 	
 	public void setID(int iD) {
 		ID = iD;
 	}
-	
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
 	
-	public void setReceiver_ID(int receiver_ID) {
-		this.receiver_ID = receiver_ID;
+	public void setReceiver(Receiver receiver) {
+		this.receiver = receiver;
 	}
 	
-	public void setIban_ID(int iban_ID) {
-		this.iban_ID = iban_ID;
+	public void setIban(Iban iban) {
+		this.iban = iban;
 	}
-
-	public void setCreationDate(LocalDateTime creationdate) {
-		this.creationdate = creationdate;
-	}
-
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
 	}
+	
+	public void setCreationdate(LocalDateTime creationdate) {
+		this.creationdate = creationdate;
+	}
+	
 	
 }

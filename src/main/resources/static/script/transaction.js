@@ -28,7 +28,7 @@ function readTransactionJson(json) {
     var labelElement = document.createElement("div");
     labelElement.innerHTML = "Datum:"
     var dataElement = document.createElement("div");
-    var date = createDateString(json.creationDate);
+    var date = createDateString(json.creationdate);
     dataElement.innerHTML = date;
 	divElement.appendChild(labelElement);
 	divElement.appendChild(dataElement);
