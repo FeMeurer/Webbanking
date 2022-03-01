@@ -49,7 +49,7 @@ function readTransactionJson(json) {
     var labelElement = document.createElement("div");
     labelElement.innerHTML = "IBAN:"
     var dataElement = document.createElement("div");
-    dataElement.innerHTML = json.iban;
+    dataElement.innerHTML = json.iban.iban;
 	divElement.appendChild(labelElement);
 	divElement.appendChild(dataElement);
 	transactionDiv.appendChild(divElement);
@@ -59,8 +59,7 @@ function readTransactionJson(json) {
     var labelElement = document.createElement("div");
     labelElement.innerHTML = "BIC:"
     var dataElement = document.createElement("div");
-    var date = createDateString(json.date);
-    dataElement.innerHTML = json.bic;
+    dataElement.innerHTML = json.iban.bic.bic;
 	divElement.appendChild(labelElement);
 	divElement.appendChild(dataElement);
 	transactionDiv.appendChild(divElement);
@@ -155,12 +154,16 @@ function addTransaction() {
     
 function executeAddTransaction() {  
 	var data = {
-		id: document.getElementById("id").value,
-		receiver: document.getElementById("receiver").value,
-		iban: document.getElementById("iban").value,
-		bic: document.getElementById("bic").value,
-		amount: document.getElementById("amount").value,
-		purpose: document.getElementById("purpose").value
+    	amount: document.getElementById("amount").value,
+    	receiver: document.getElementById("receiver").value,
+	    iban: {
+	      iban: document.getElementById("iban").value,
+	      bic: {
+	        bic: document.getElementById("bic").value,
+	        institute: ""
+	      }
+	    },
+	    purpose: document.getElementById("purpose").value,
 	}
 	
 	var json = JSON.stringify(data);
@@ -255,20 +258,6 @@ function createForm() {
     var transactionDiv = document.createElement("div");
     transactionDiv.id = "flex-container";
     document.getElementById("content").appendChild(transactionDiv);
-    
-    var divElement = document.createElement("div");
-    divElement.className = "transaction-property"
-    var labelElement = document.createElement("div");
-    labelElement.innerHTML = "ID: "
-    var dataElement = document.createElement("div");
-	var inputFormParam = document.createElement("input");
-	inputFormParam.type = "number";
-	inputFormParam.className = "form-field";
-	inputFormParam.id = "id";
-	dataElement.appendChild(inputFormParam);
-	divElement.appendChild(labelElement);
-	divElement.appendChild(dataElement);
-	transactionDiv.appendChild(divElement);
 	
 	var divElement = document.createElement("div");
     divElement.className = "transaction-property"

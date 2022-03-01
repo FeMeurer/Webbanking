@@ -2,17 +2,16 @@ package de.telekom.sea7.impl.repository;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.lang.NonNull;
+
 
 @Entity
 public class Transaction {
@@ -23,11 +22,9 @@ public class Transaction {
 	
 	private float amount;
 	
-	@ManyToOne
-	@JoinColumn(name="receiver_id")
-	private Receiver receiver; 
+	private String receiver; 
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="iban_id")
 	private Iban iban;
 	
@@ -42,7 +39,7 @@ public class Transaction {
 		return amount;
 	}
 	
-	public Receiver getReceiver() {
+	public String getReceiver() {
 		return receiver;
 	}
 	
@@ -65,7 +62,7 @@ public class Transaction {
 		this.amount = amount;
 	}
 	
-	public void setReceiver(Receiver receiver) {
+	public void setReceiver(String receiver) {
 		this.receiver = receiver;
 	}
 	

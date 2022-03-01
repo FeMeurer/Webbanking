@@ -47,7 +47,7 @@ function readTransactionListJson(json) {
 
         //// Create element for showing receiver 
         var receiverElement = document.createElement("div");
-        var textElement = document.createTextNode(element.receiver_ID)
+        var textElement = document.createTextNode(element.receiver)
         receiverElement.appendChild(textElement);
         subElement.appendChild(receiverElement);
 
