@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -16,7 +17,7 @@ public class Receiver {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int ID;
+	private long id;
 	private String name;
 	private String street;
 	private String city;
@@ -24,7 +25,7 @@ public class Receiver {
 	private String country;
 	
 	@OneToMany(mappedBy="receiver")
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Transaction> transactions;
 	
 	public List<Transaction> getTransactions() {
@@ -35,8 +36,8 @@ public class Receiver {
 		this.transactions = transactions;
 	}
 
-	public int getID() {
-		return ID;
+	public long getId() {
+		return id;
 	}
 	
 	public String getName() {
@@ -59,8 +60,8 @@ public class Receiver {
 		return country;
 	}
 	
-	public void setID(int iD) {
-		ID = iD;
+	public void setID(long id) {
+		this.id = id;
 	}
 	
 	public void setName(String name) {

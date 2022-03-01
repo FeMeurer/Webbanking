@@ -19,25 +19,23 @@ public class Transaction {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int ID;
+	private long id;
 	
 	private float amount;
 	
 	@ManyToOne
-	@JoinColumn(name="receiver_ID")
-	@JsonBackReference
+	@JoinColumn(name="receiver_id")
 	private Receiver receiver; 
 	
 	@ManyToOne
-	@JoinColumn(name="iban_ID")
-	@JsonBackReference
+	@JoinColumn(name="iban_id")
 	private Iban iban;
 	
 	private String purpose;
 	private LocalDateTime creationdate;
 	
-	public int getID() {
-		return ID;
+	public long getId() {
+		return id;
 	}
 	
 	public float getAmount() {
@@ -60,8 +58,8 @@ public class Transaction {
 		return creationdate;
 	}
 	
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(long id) {
+		this.id = id;
 	}
 	public void setAmount(float amount) {
 		this.amount = amount;

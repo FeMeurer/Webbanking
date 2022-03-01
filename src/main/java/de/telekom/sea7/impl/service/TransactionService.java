@@ -5,9 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import de.telekom.sea7.impl.repository.Transaction;
 import de.telekom.sea7.inter.repository.TransactionRepository;
@@ -22,11 +19,17 @@ public class TransactionService {
 		return transactionRepo.findAll();
 	}
 	
-	public Transaction getTransaction(int id) {
+	public Transaction getTransaction(long id) {
 		Optional<Transaction> optionalTransaction = transactionRepo.findById(id);
-		Transaction transaction = new Transaction();
-		transaction = optionalTransaction.get();
-		return transaction;
+		
+		if (optionalTransaction.isPresent()) {
+			Transaction transaction = new Transaction();
+			transaction = optionalTransaction.get();
+			return transaction;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	public Transaction addTransaction(Transaction transaction) {
@@ -34,7 +37,7 @@ public class TransactionService {
 		return null;
 	}
 	
-	public Transaction deleteTransaction(int id) {
+	public Transaction deleteTransaction(long id) {
 		transactionRepo.deleteById(id);
 		return null;
 	}
