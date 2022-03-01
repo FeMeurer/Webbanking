@@ -3,8 +3,8 @@ package de.telekom.sea7.impl.repository;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,9 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.lang.NonNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Iban {
@@ -23,15 +23,16 @@ public class Iban {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long id;
 	
+	@Column(unique=true)
 	private String iban;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="bic_id")
 	private Bic bic;
 	
-	@OneToMany(mappedBy="iban")
-	@JsonIgnore
-	private List<Transaction> transactions;
+//	@OneToMany(mappedBy="iban")
+//	@JsonIgnore
+//	private List<Transaction> transactions;
 
 	public long getId() {
 		return id;
@@ -45,9 +46,9 @@ public class Iban {
 		return bic;
 	}
 
-	public List<Transaction> getTransactions() {
-		return transactions;
-	}
+//	public List<Transaction> getTransactions() {
+//		return transactions;
+//	}
 
 	public void setId(long id) {
 		this.id = id;
@@ -61,7 +62,7 @@ public class Iban {
 		this.bic = bic;
 	}
 
-	public void setTransactions(List<Transaction> transactions) {
-		this.transactions = transactions;
-	}
+//	public void setTransactions(List<Transaction> transactions) {
+//		this.transactions = transactions;
+//	}
 }
