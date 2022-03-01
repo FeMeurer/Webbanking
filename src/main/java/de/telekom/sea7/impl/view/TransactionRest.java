@@ -14,42 +14,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.telekom.sea7.impl.repository.Transaction;
+import de.telekom.sea7.impl.service.TransactionService;
 import de.telekom.sea7.inter.repository.TransactionRepository;
 
 @RestController
 public class TransactionRest {
 	
 	@Autowired
-	TransactionRepository transactionRepo;
+	TransactionService transactionService;
 	
 	@GetMapping("/transaction")
 	public List<Transaction> getTransactionList() {
-		return transactionRepo.findAll();
+		return transactionService.getTransactionList();
 	}
 	
 	@GetMapping("/transaction/{id}")
 	public Transaction getTransaction(@PathVariable int id) {
-		Optional<Transaction> optionalTransaction = transactionRepo.findById(id);
-		Transaction transaction = new Transaction();
-		transaction = optionalTransaction.get();
-		System.out.println(transaction.getAmount());
-		System.out.println(transaction.getIban().getIban());
-		System.out.println(transaction.getID());
-		System.out.println(transaction.getPurpose());
-		System.out.println(transaction.getReceiver().getName());
-		return transaction;
+		return transactionService.getTransaction(id);
 	}
 
 	@PostMapping("/transaction")
 	public Transaction addTransaction(@RequestBody Transaction transaction) {
-		transactionRepo.save(transaction);
-		return null;
+		return transactionService.addTransaction(transaction);
 	}
 
 	@DeleteMapping("/transaction/{id}")
 	public Transaction deleteTransaction(@PathVariable int id) {
-		transactionRepo.deleteById(id);
-		return null;
+		return transactionService.deleteTransaction(id);
 	}
 	
 }
