@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -19,21 +21,20 @@ public class Iban {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int ID;
+	private long id;
 	
 	private String iban;
 	
 	@ManyToOne
-	@JoinColumn(name="bic_ID")
-	@JsonBackReference
+	@JoinColumn(name="bic_id")
 	private Bic bic;
 	
 	@OneToMany(mappedBy="iban")
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Transaction> transactions;
 
-	public int getID() {
-		return ID;
+	public long getId() {
+		return id;
 	}
 
 	public String getIban() {
@@ -48,8 +49,8 @@ public class Iban {
 		return transactions;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public void setIban(String iban) {

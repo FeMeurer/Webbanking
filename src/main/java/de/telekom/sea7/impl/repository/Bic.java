@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -17,12 +18,12 @@ public class Bic {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int ID;
+	private long id;
 	private String bic;
 	private String institute;
 	
 	@OneToMany(mappedBy="bic")
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Iban> ibans;
 	
 	public List<Iban> getIbans() {
@@ -33,8 +34,8 @@ public class Bic {
 		this.ibans = ibans;
 	}
 
-	public int getID() {
-		return ID;
+	public long getId() {
+		return id;
 	}
 	
 	public String getBic() {
@@ -45,8 +46,8 @@ public class Bic {
 		return institute;
 	}
 	
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	public void setBic(String bic) {
