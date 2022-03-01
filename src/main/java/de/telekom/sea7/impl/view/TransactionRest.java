@@ -32,6 +32,11 @@ public class TransactionRest {
 		Optional<Transaction> optionalTransaction = transactionRepo.findById(id);
 		Transaction transaction = new Transaction();
 		transaction = optionalTransaction.get();
+		System.out.println(transaction.getAmount());
+		System.out.println(transaction.getIban().getIban());
+		System.out.println(transaction.getID());
+		System.out.println(transaction.getPurpose());
+		System.out.println(transaction.getReceiver().getName());
 		return transaction;
 	}
 

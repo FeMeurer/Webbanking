@@ -1,9 +1,15 @@
 package de.telekom.sea7.impl.repository;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Receiver {
@@ -17,6 +23,18 @@ public class Receiver {
 	private String zipcode;
 	private String country;
 	
+	@OneToMany(mappedBy="receiver")
+	@JsonManagedReference
+	private List<Transaction> transactions;
+	
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
+	}
+
 	public int getID() {
 		return ID;
 	}
