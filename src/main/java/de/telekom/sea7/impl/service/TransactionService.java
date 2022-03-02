@@ -72,13 +72,6 @@ public class TransactionService {
 		return null;	
 	}
 	
-	public Transaction updateTransaction(Transaction transaction) {
-		Transaction foundTransaction = transactionRepo.findById(transaction.getId()).get();
-		foundTransaction.setIban(transaction.getIban());
-//		transactionRepo.save(foundTransaction);
-		return null;
-	}
-	
 	public Transaction deleteTransaction(long id) {
 		transactionRepo.deleteById(id);
 		return null;
