@@ -108,7 +108,7 @@ function readTransactionJson(json) {
     button.type = "button";
     button.innerHTML = "Ändern";
     button.className = "btn_functions";
-    button.addEventListener("click", function(){editTransaction(json, transactionIndex)});
+    button.addEventListener("click", function(){editTransaction(json)});
     
     divButtons.appendChild(button);
 }
@@ -174,19 +174,18 @@ function executeAddTransaction() {
 		body: json
 	}
 		
-    fetch('/transaction', method)
+    fetch('/transaction/', method)
         .then(function(){fetchSuccess("Zahlung wurde hinzugefügt!")})
 }
 
-function editTransaction(json, index) {
+function editTransaction(json) {
 	var contentDiv = document.getElementById("content");
     cleanDiv(contentDiv);
 	
 	createForm();
-	document.getElementById("id").value = json.id;
 	document.getElementById("receiver").value = json.receiver;
-	document.getElementById("iban").value = json.iban;
-	document.getElementById("bic").value = json.bic;
+	document.getElementById("iban").value = json.iban.iban;
+	document.getElementById("bic").value = json.iban.bic.bic;
 	document.getElementById("amount").value = parseFloat(json.amount).toFixed(2);
 	document.getElementById("purpose").value = json.purpose;
 	
@@ -206,30 +205,38 @@ function editTransaction(json, index) {
     button.type = "button";
     button.innerHTML = "Ändern";
     button.className = "btn_functions";
-    button.addEventListener("click", function(){executeEditTransaction(index)});
+    button.addEventListener("click", function(){executeEditTransaction(json)});
     
     divButtons.appendChild(button);
 }
 
-function executeEditTransaction(index) {  
+function executeEditTransaction(json) {  
 	var data = {
-		id: document.getElementById("id").value,
-		receiver: document.getElementById("receiver").value,
-		iban: document.getElementById("iban").value,
-		bic: document.getElementById("bic").value,
-		amount: document.getElementById("amount").value,
-		purpose: document.getElementById("purpose").value
+		id: json.id,
+    	amount: document.getElementById("amount").value,
+    	receiver: document.getElementById("receiver").value,
+	    iban: {
+		  id: json.iban.id,
+	      iban: document.getElementById("iban").value,
+	      bic: {
+			id: json.iban.bic.id,
+			bic: document.getElementById("bic").value,
+	        institute: ""
+	      }
+	    },
+	    purpose: document.getElementById("purpose").value,
 	}
 	
 	var json = JSON.stringify(data);
+	console.log(json);
 	
 	var method = {
-		method: 'PUT',
+		method: 'POST',
 		headers: new Headers({'content-type': 'application/json'}),
 		body: json
 	}
 		
-    fetch('/transaction/' + index, method)
+    fetch('/updatetransaction/', method)
         .then(function(){fetchSuccess("Zahlung wurde geändert!")})
 }
 

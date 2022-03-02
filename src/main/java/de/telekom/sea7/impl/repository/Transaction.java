@@ -9,7 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.lang.NonNull;
 
 
@@ -20,15 +22,21 @@ public class Transaction {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long id;
 	
+//	@NotNull
 	private float amount;
 	
+//	@NotNull
 	private String receiver; 
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+//	@NotNull
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="iban_id")
 	private Iban iban;
 	
+//	@NotNull
 	private String purpose;
+	
+//	@NotNull
 	private LocalDateTime creationdate;
 	
 	public long getId() {
