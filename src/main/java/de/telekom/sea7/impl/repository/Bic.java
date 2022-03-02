@@ -1,6 +1,7 @@
 package de.telekom.sea7.impl.repository;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.lang.NonNull;
 import org.springframework.validation.annotation.Validated;
@@ -24,21 +26,10 @@ public class Bic {
 	private long id;
 
 	@Column(unique=true)
+//	@NotNull
 	private String bic;
 	private String institute;
 	
-//	@OneToMany(mappedBy="bic")
-//	@JsonIgnore
-//	private List<Iban> ibans;
-	
-//	public List<Iban> getIbans() {
-//		return ibans;
-//	}
-//
-//	public void setIbans(List<Iban> ibans) {
-//		this.ibans = ibans;
-//	}
-
 	public long getId() {
 		return id;
 	}
@@ -63,5 +54,27 @@ public class Bic {
 		this.institute = institute;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		
+		if (obj == null) {
+			return false;
+		}
+		
+		if (obj instanceof Bic) {
+			if (((Bic) obj).getBic().equals(getBic())) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(getBic());
+	}
 }

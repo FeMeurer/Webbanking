@@ -1,6 +1,7 @@
 package de.telekom.sea7.impl.repository;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.lang.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,15 +27,13 @@ public class Iban {
 	private long id;
 	
 	@Column(unique=true)
+//	@NotNull
 	private String iban;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+//	@NotNull
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="bic_id")
 	private Bic bic;
-	
-//	@OneToMany(mappedBy="iban")
-//	@JsonIgnore
-//	private List<Transaction> transactions;
 
 	public long getId() {
 		return id;
@@ -46,10 +47,6 @@ public class Iban {
 		return bic;
 	}
 
-//	public List<Transaction> getTransactions() {
-//		return transactions;
-//	}
-
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -61,8 +58,28 @@ public class Iban {
 	public void setBic(Bic bic) {
 		this.bic = bic;
 	}
-
-//	public void setTransactions(List<Transaction> transactions) {
-//		this.transactions = transactions;
-//	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		
+		if (obj == null) {
+			return false;
+		}
+		
+		if (obj instanceof Iban) {
+			if (((Iban) obj).getIban().equals(getIban())) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(getIban());
+	}
 }
