@@ -236,7 +236,7 @@ function executeEditTransaction(json) {
 		body: json
 	}
 		
-    fetch('/updatetransaction/', method)
+    fetch('/transaction/', method)
         .then(function(){fetchSuccess("Zahlung wurde geändert!")})
 }
 

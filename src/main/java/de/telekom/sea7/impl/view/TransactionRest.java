@@ -34,11 +34,6 @@ public class TransactionRest {
 	public Transaction addTransaction(@RequestBody Transaction transaction) {
 		return transactionService.addTransaction(transaction);
 	}
-	
-	@PostMapping("/updatetransaction")
-	public Transaction updateTransaction(@RequestBody Transaction transaction) {
-		return transactionService.updateTransaction(transaction);
-	}
 
 	@DeleteMapping("/transaction/{id}")
 	public Transaction deleteTransaction(@PathVariable int id) {
