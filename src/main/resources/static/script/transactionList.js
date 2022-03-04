@@ -1,11 +1,29 @@
 function showTransactionList() {
+    if (document.getElementById("userData") == null) {
+        var headerDiv = document.getElementById("header-container");
+        var userDataDiv = document.createElement("div");
+        userDataDiv.id = "userData";
+        userDataDiv.innerHTML = "<i class='fas fa-user-circle'></i> " + userSession.name + " " + userSession.surname
+        //userDataDiv.addEventListener('click', changeUserData);
+        headerDiv.appendChild(userDataDiv);
+    }
+    
     if (document.getElementById("gotoNewTransaction") == null) {
         var headerDiv = document.getElementById("header-container");
         var newTransactionDiv = document.createElement("div");
         newTransactionDiv.id = "gotoNewTransaction";
-        newTransactionDiv.innerHTML = "Neue Überweisung"
+        newTransactionDiv.innerHTML = "<i class='fa fa-plus-square'></i> Neue Überweisung"
         newTransactionDiv.addEventListener('click', addTransaction);
         headerDiv.appendChild(newTransactionDiv);
+    }
+
+    if (document.getElementById("logout") == null) {
+        var headerDiv = document.getElementById("header-container");
+        var logoutDiv = document.createElement("div");
+        logoutDiv.id = "logout";
+        logoutDiv.innerHTML = "<i class='fa fa-sign-out'></i> Abmelden"
+        logoutDiv.addEventListener('click', logout);
+        headerDiv.appendChild(logoutDiv);
     }
 
     document.getElementById("gotoIndex").addEventListener('click', showTransactionList);

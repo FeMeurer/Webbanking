@@ -92,10 +92,19 @@ header {
     font-weight: bolder;
     border: none;
 }
+
 .btn_functions:hover {
     color: red;
     font-size: 17px;
     font-weight: bolder;
     background-color: white;
     border: 1px solid red;
+}
+
+.headerright {
+    text-align: right;
+}
+
+.headerleft {
+    text-align: left;
 }
