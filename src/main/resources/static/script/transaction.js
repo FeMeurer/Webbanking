@@ -9,13 +9,8 @@ function showTransaction(index) {
     headlineDiv.innerHTML = "Zahlung: " + index;
 	
     fetch('/transaction/' + index)
-        .then(readTransactionData)
+        .then(getJsonData)
         .then(readTransactionJson)
-}
-
-function readTransactionData(data) {
-    var json = data.json();
-    return json;
 }
 
 function readTransactionJson(json) {
@@ -156,6 +151,9 @@ function executeAddTransaction() {
 	var data = {
     	amount: document.getElementById("amount").value,
     	receiver: document.getElementById("receiver").value,
+		customer: {
+			id:	userSession.id
+		},
 	    iban: {
 	      iban: document.getElementById("iban").value,
 	      bic: {
@@ -185,7 +183,9 @@ function editTransaction(json) {
 	createForm();
 	document.getElementById("receiver").value = json.receiver;
 	document.getElementById("iban").value = json.iban.iban;
+	document.getElementById("iban").disabled = "true";
 	document.getElementById("bic").value = json.iban.bic.bic;
+	document.getElementById("bic").disabled = "true";
 	document.getElementById("amount").value = parseFloat(json.amount).toFixed(2);
 	document.getElementById("purpose").value = json.purpose;
 	
@@ -215,6 +215,9 @@ function executeEditTransaction(json) {
 		id: json.id,
     	amount: document.getElementById("amount").value,
     	receiver: document.getElementById("receiver").value,
+		customer: {
+			id:	json.customer.id
+		},
 	    iban: {
 		  id: json.iban.id,
 	      iban: document.getElementById("iban").value,

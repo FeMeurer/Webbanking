@@ -39,6 +39,10 @@ public class Transaction {
 //	@NotNull
 	private LocalDateTime creationdate;
 	
+	@ManyToOne
+	@JoinColumn(name="customer_id")
+	private Customer customer;
+	
 	public long getId() {
 		return id;
 	}
@@ -47,6 +51,14 @@ public class Transaction {
 		return amount;
 	}
 	
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 	public String getReceiver() {
 		return receiver;
 	}

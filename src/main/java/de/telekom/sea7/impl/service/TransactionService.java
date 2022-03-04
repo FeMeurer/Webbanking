@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -13,9 +15,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import de.telekom.sea7.impl.repository.Bic;
+import de.telekom.sea7.impl.repository.Customer;
 import de.telekom.sea7.impl.repository.Iban;
 import de.telekom.sea7.impl.repository.Transaction;
 import de.telekom.sea7.inter.repository.BicRepository;
+import de.telekom.sea7.inter.repository.CustomerRepository;
 import de.telekom.sea7.inter.repository.IbanRepository;
 import de.telekom.sea7.inter.repository.TransactionRepository;
 
@@ -31,8 +35,22 @@ public class TransactionService {
 	@Autowired
 	BicRepository bicRepo;
 	
-	public List<Transaction> getTransactionList() {
-		return transactionRepo.findAll();
+	@Autowired
+	CustomerRepository customerRepo;
+	
+	public List<Transaction> getTransactionList(long userid) {
+		Optional<Customer> optionalCustomer = customerRepo.findById(userid);
+		
+		System.out.println(optionalCustomer.isPresent());
+		if (optionalCustomer.isPresent()) {
+			Customer customer = new Customer();
+			customer = optionalCustomer.get();
+			System.out.println(customer.getName());
+			return customer.getTransactions();
+		}
+		else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Kunde wurde nicht gefunden");
+		}
 	}
 	
 	public Transaction getTransaction(long id) {
@@ -75,6 +93,16 @@ public class TransactionService {
 	public Transaction deleteTransaction(long id) {
 		transactionRepo.deleteById(id);
 		return null;
+	}
+	
+	@PostConstruct
+	public void init() {
+		System.out.println("#### Transaction service initialized! ####");
+	}
+	
+	@PreDestroy
+	public void destroy() {
+		System.out.println("#### Transaction service closed! ####");
 	}
 
 }
