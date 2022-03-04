@@ -1,4 +1,15 @@
 function showTransactionList() {
+    if (document.getElementById("gotoNewTransaction") == null) {
+        var headerDiv = document.getElementById("header-container");
+        var newTransactionDiv = document.createElement("div");
+        newTransactionDiv.id = "gotoNewTransaction";
+        newTransactionDiv.innerHTML = "Neue Überweisung"
+        newTransactionDiv.addEventListener('click', addTransaction);
+        headerDiv.appendChild(newTransactionDiv);
+    }
+
+    document.getElementById("gotoIndex").addEventListener('click', showTransactionList);
+
     var contentDiv = document.getElementById("content");
     cleanDiv(contentDiv);
 
@@ -13,8 +24,8 @@ function showTransactionList() {
 	flexbox.id = "flex-container";
 	contentDiv.appendChild(flexbox);
 
-    fetch('/transaction')
-        .then(readTransactionListData)
+    fetch('/' + userSession.id + '/transaction')
+        .then(getJsonData)
         .then(readTransactionListJson)
 }
 

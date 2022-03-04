@@ -14,34 +14,6 @@
     width: 350px;
 }
 
-#button-container {
-	display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-content: flex-start;	
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 30px;
-    gap: 5px;
-}
-
-.btn_functions {
-    width: 120px;
-    height: 30px;
-    font-size: 17px;
-    background-color: red;
-    color: white;
-    font-weight: bolder;
-    border: none;
-}
-.btn_functions:hover {
-    color: red;
-    font-size: 17px;
-    font-weight: bolder;
-    background-color: white;
-    border: 1px solid red;
-}
-
 #btn_back {
 	margin-right: 20px;
     width: 100px;

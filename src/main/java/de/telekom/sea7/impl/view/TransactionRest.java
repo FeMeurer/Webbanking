@@ -20,13 +20,13 @@ public class TransactionRest {
 	@Autowired
 	TransactionService transactionService;
 	
-	@GetMapping("/transaction")
-	public List<Transaction> getTransactionList() {
-		return transactionService.getTransactionList();
+	@GetMapping("/{userid}/transaction")
+	public List<Transaction> getTransactionList(@PathVariable long userid) {
+		return transactionService.getTransactionList(userid);
 	}
 	
 	@GetMapping("/transaction/{id}")
-	public Transaction getTransaction(@PathVariable int id) {
+	public Transaction getTransaction(@PathVariable long id) {
 		return transactionService.getTransaction(id);
 	}
 
@@ -36,7 +36,7 @@ public class TransactionRest {
 	}
 
 	@DeleteMapping("/transaction/{id}")
-	public Transaction deleteTransaction(@PathVariable int id) {
+	public Transaction deleteTransaction(@PathVariable long id) {
 		return transactionService.deleteTransaction(id);
 	}
 	
