@@ -26,4 +26,9 @@ public class CustomerService {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Kunde wurde nicht gefunden");
 		}
 	}
+	
+	public Customer addCustomer(Customer customer) {
+		customerRepo.save(customer);
+		return null;
+	}
 }
